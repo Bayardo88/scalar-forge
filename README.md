@@ -61,7 +61,7 @@ git clone https://github.com/Bayardo88/Prism-v1 ~/Documents/GitHub/Prism-v1 && (
 ```
 
 Set `PRISM_V1=/path/to/Prism-v1` if it lives elsewhere. Then start a new Claude Code
-session and ask it to "add a … page to Scalar" or "prototype …", or type `/scalar-forge`.
+session and ask it to "add a … page to Scalar" or "prototype …", or type `/scalar-forge` (`/scalar-forge:scalar-forge` when installed as a plugin).
 
 Requires Prism-v1 (`AI-GUIDE.md`, `apps/product/`, `docs/product/`). The skill fetches
 `origin/main` and works in a worktree when your checkout is on another branch. Figma
