@@ -1,6 +1,6 @@
-# prism-builder-pro
+# scalar-forge
 
-Claude Code skill(s) for building **real prototypes of the Scalar product** from the
+A Claude Code skill for building **real prototypes of the Scalar product** from the
 [Prism-v1](https://github.com/Bayardo88/Prism-v1) design system and product app. It
 always builds on Prism-v1 `main` and uses the components the way their
 [Storybook](https://scalar-prism-storybook.netlify.app) stories do: tokens and coded
@@ -24,16 +24,44 @@ retired and removed from Prism-v1, and adds a reuse-first layer:
 | `references/figma-push.md` | Code → Figma by instancing published components, starting from Page Template · Body Slot |
 | `scripts/reuse-check.mjs` | "Does this already exist?" search across screens, Storybook stories, Storybook spec pages (MDX), components, PageTemplate / nav specs, docs, tokens and known gaps, with a warning when the checkout is behind `main` |
 
-### Install
+## Install
+
+### Option 1: as a Claude Code plugin (recommended)
+
+In Claude Code, run:
+
+```
+/plugin marketplace add Bayardo88/scalar-forge
+/plugin install scalar-forge@scalar-forge
+```
+
+Or from a terminal:
 
 ```bash
-git clone git@github.com:Bayardo88/prism-builder-pro.git
-cd prism-builder-pro && ./install.sh     # symlinks into ~/.claude/skills, removes retired scalar-product / scalar-screen links
+claude plugin marketplace add Bayardo88/scalar-forge && claude plugin install scalar-forge@scalar-forge
+```
+
+Get updates later with `claude plugin marketplace update scalar-forge`.
+
+### Option 2: as a plain skill (symlink)
+
+```bash
+git clone https://github.com/Bayardo88/scalar-forge.git
+cd scalar-forge && ./install.sh     # symlinks into ~/.claude/skills, removes retired scalar-product / scalar-screen links
+```
+
+Pick up changes with `git pull` in the clone; the symlink makes them live.
+
+### Then: get Prism-v1
+
+The skill builds inside the Prism-v1 repo, so clone it once:
+
+```bash
 git clone https://github.com/Bayardo88/Prism-v1 ~/Documents/GitHub/Prism-v1 && (cd ~/Documents/GitHub/Prism-v1 && npm install)
 ```
 
-Set `PRISM_V1=/path/to/Prism-v1` if it lives elsewhere. Then ask Claude Code to
-"add a … page to Scalar" or "prototype …".
+Set `PRISM_V1=/path/to/Prism-v1` if it lives elsewhere. Then start a new Claude Code
+session and ask it to "add a … page to Scalar" or "prototype …", or type `/scalar-forge`.
 
 Requires Prism-v1 (`AI-GUIDE.md`, `apps/product/`, `docs/product/`). The skill fetches
 `origin/main` and works in a worktree when your checkout is on another branch. Figma

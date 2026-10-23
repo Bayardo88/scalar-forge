@@ -1,0 +1,15 @@
+{
+  "name": "scalar-forge",
+  "description": "Scalar Forge: a Claude Code skill for building Scalar product prototypes on the Prism-v1 design system.",
+  "owner": {
+    "name": "Bayardo88",
+    "url": "https://github.com/Bayardo88"
+  },
+  "plugins": [
+    {
+      "name": "scalar-forge",
+      "source": "./",
+      "description": "Build real, clickable prototypes of the Scalar product from the Prism-v1 design system: tokens and coded components only, reuse-first, with Figma push."
+    }
+  ]
+}
