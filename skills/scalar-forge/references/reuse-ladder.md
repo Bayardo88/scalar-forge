@@ -60,6 +60,8 @@ pasted that uses different styling (the DS wins — AI-GUIDE overrides screensho
 | Hand-build the page top (menus, company bar, drawer) | `PageTemplate` props |
 | A custom calendar, Gantt or status pill | `WorkCalendar`, `WorkTimeline`, `ActionPill` / `ActionTag` / `DueDatePill` |
 | Make a "stat card" | `SummaryCard` family (`docs/components.md` §13) |
+| An animated / gradient "AI is working" border | `AiOutline` (`color.gradient.ai.*`, orbit in CSS) |
+| A custom notification popover or toast animation | `NotificationCenter` surface + `Toast`; motion from `motion.*` (references/notifications-and-ai-motion.md) |
 | Build a custom empty/loading/error block | `EmptyState`, `Skeleton`, `Alert`/`Banner`, feedback patterns (§14, §24) |
 | Custom filter bar | `FilterDropdown`, `Chip`, `ViewTabBar` |
 | A bespoke side panel | `Drawer` / Workspace Drawer / overlays (§25) |

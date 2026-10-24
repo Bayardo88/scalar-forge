@@ -9,8 +9,8 @@ Turns "I need a page" or "I want to explore this feature" into a working React
 prototype of the **real Scalar product**. It builds only from what already exists,
 **on the latest design system, which is Prism-v1 `main`**:
 
-- **Tokens and components:** `@scalar/design-system` (Prism-v1 `src/`): 487 tokens (including the Workflow and Deal families) and the 168 Figma components, plus the code-layer and Workboard families (the Valuation modal among them).
-- **Usage:** the Storybook built from `main`, https://scalar-prism-storybook.netlify.app (50 groups, 440 stories, plus MDX spec pages such as *Prism Table spec* and *Valuation Modal spec*). See [references/storybook.md](references/storybook.md).
+- **Tokens and components:** `@scalar/design-system` (Prism-v1 `src/`): 491 tokens (including the Workflow, Deal and Gradient/AI families) and the 168 Figma components, plus the code-layer and Workboard families (the Valuation modal among them) and `AiOutline`, the "AI is working" animation.
+- **Usage:** the Storybook built from `main`, https://scalar-prism-storybook.netlify.app (50 groups, 442 stories, plus MDX spec pages such as *Prism Table spec*, *Valuation Modal spec* and *AiOutline spec*). See [references/storybook.md](references/storybook.md).
 - **Screen base:** `PageTemplate` (`docs/page-template.md`) and the 3-tier navigation spec (`docs/navigation-3-tier-system.md`).
 - **Platform chrome and coded screens:** Prism-v1 `apps/product/`, which has 37 screens covering all 103 frames of Figma file `cZktZhD0ssL5lRVOvSqmOV`, plus prototypes.
 - **Logic and documentation:** `AI-GUIDE.md`, `docs/`, `docs/product/pages/*.md`.
@@ -41,7 +41,7 @@ feature demands it, and prove it.**
    - Build against a feature branch only when the user asks. Then use its Netlify deploy preview or `npm run storybook` instead of the live Storybook.
 3. Read **`AI-GUIDE.md`** in full: rules R1–R14, the intent→component railroad (§5) and the API (§7). It overrides any screenshot, story or existing screen.
 4. Read **`docs/page-template.md`** (§6 is the agent rules) and **`docs/navigation-3-tier-system.md`** §1 and §7–8 (tier scope and the per-screen configuration matrix).
-5. Read [references/storybook.md](references/storybook.md), [references/app-architecture.md](references/app-architecture.md), [references/reuse-ladder.md](references/reuse-ladder.md) and [references/screen-logic.md](references/screen-logic.md).
+5. Read [references/storybook.md](references/storybook.md), [references/app-architecture.md](references/app-architecture.md), [references/reuse-ladder.md](references/reuse-ladder.md) and [references/screen-logic.md](references/screen-logic.md). For anything that notifies the user (bell, panel, toast) or shows **AI working** or other motion, also read [references/notifications-and-ai-motion.md](references/notifications-and-ai-motion.md).
 6. Skim `docs/known-gaps.md`. Gaps change what you may build (charts, dense grids, icons, unpublished `cell`/`Header`, Workflow tones (13), Deal tokens (14)).
 7. See what exists: `docs/product/screen-catalog.md` / `screens.json`, `docs/product/README.md` (IA map) and the Storybook index.
 
@@ -123,6 +123,9 @@ Before writing code, state in one line the mode, the existing screen(s) you star
 - Use realistic finance copy, never lorem ipsum.
 - Chart.js configs take values from `useChartTokens`, never `var(--…)`.
 - A deal's card is `DealCard tone="deal"` (or `color.deal.*`). Never `bg.positive`, because a deal is not a status, and never white text on the Deal fill, which is 2.25:1.
+- **AI is working on an item** → `AiOutline` (2px `color.gradient.ai.*` outline that orbits every 6s while `active`), plus words or a `Spinner`. Never a hand-made gradient border, and never PRISM tokens for it (R11). See [references/notifications-and-ai-motion.md](references/notifications-and-ai-motion.md).
+- **Motion** uses `motion.*` durations and easings as transitions (which `base.css` reduced motion covers). A looping animation is a DS keyframe with its own `prefers-reduced-motion` stop, never screen code. Verify motion in the browser (computed styles over time or `el.getAnimations()`).
+- **Notifications:** the bell is `Notification` (dot only, no count) and the panel is `NotificationCenter`. The filters-above-the-list panel and the notification card are the *proposed* pattern from the Notifications Center prototype. Compose them as it does, and swap a global menu in a prototype with `GlobalMenuOverridesContext`, never by forking `AppFrame`.
 
 ## Step 4: Verify. Don't claim it works until you've looked.
 
@@ -175,6 +178,8 @@ Report what you checked. If you couldn't render, say so. Hidden browser panes ca
 - Leave a new page unreachable or break a route. The catalog check catches dropped frames, not dead links, so you must check those.
 - Colour a Global Search result by anything but its PRISM type, or use PRISM (or a Workflow tone, or the Deal tokens) for access, permission or status.
 - Hand-build the Workboard Valuation modal or its parts (assignee cards, figure tiles, step assignment, notes). Compose `ValuationModal` from its components and their stories.
+- Hand-build an animated or gradient "AI" border, paint it with PRISM tokens, or animate with raw durations. Use `AiOutline` and `motion.*`.
+- Put a number on the notification bell, or add `tone="ai"` to `Toast` without the rung-7 protocol (the prototype tints it through `--toast-bg` / `--toast-ink`).
 - Use `text.primary` on a filled surface or white text on `bg.warning`. Ship a chart without a legend, or a canvas chart without its data table.
 - Ship dark mode on a page (R14).
 - Silently "fix" something in `docs/known-gaps.md`.

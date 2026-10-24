@@ -22,6 +22,7 @@ retired and removed from Prism-v1, and adds a reuse-first layer:
 | `references/app-architecture.md` | `apps/product` model: screen × state, `PageTemplate` chrome, routes, Table / DataGrid rules |
 | `references/screen-recipes.md` | Eight archetypes (incl. spreadsheet and workboard, with the Workboard Valuation modal), their stories and their traps |
 | `references/figma-push.md` | Code → Figma by instancing published components, starting from Page Template · Body Slot |
+| `references/notifications-and-ai-motion.md` | Bell, Notification Center, the proposed filters-above-list panel and card, notification logic, `AiOutline` (the AI working animation) and motion on tokens |
 | `scripts/reuse-check.mjs` | "Does this already exist?" search across screens, Storybook stories, Storybook spec pages (MDX), components, PageTemplate / nav specs, docs, tokens and known gaps, with a warning when the checkout is behind `main` |
 
 ## Install

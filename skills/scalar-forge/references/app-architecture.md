@@ -31,7 +31,7 @@ apps/product/
         index.ts             `export const screens: ScreenDef[]`
         <Screen>.tsx         `({ state, params }: ScreenProps) => JSX`
         data.ts              area-specific demo data (optional)
-      prototypes/            company-overview-v2 · company-valuations-v2 · reports (`proto:` frame ids)
+      prototypes/            company-overview-v2 · company-valuations-v2 · reports · notifications-center (`proto:` frame ids)
 ```
 
 ## The model: screen × state
@@ -77,6 +77,9 @@ keep working; don't migrate them unless asked.
 - `AppFrame.openMenu` opens a global menu (`'companies' | 'companies-add' | 'date' |
   'search' | 'notifications' | 'notification-settings' | 'user' | 'user-firm-settings'`).
   The menus are also live on click on every screen.
+- `GlobalMenuOverridesContext` (from `shell/AppFrame.tsx`) lets a **prototype** swap a global menu's surface,
+  drive the bell's unread dot and know which menu is open while composing a real screen unchanged
+  (`prototypes/notifications-center`). Product screens never provide it.
 - `AppFrame.overlay` (and `CompanyLayout.overlay`) draws a screen-level modal,
   drawer or popover above the body.
 - `CompanyLayout.dockOpen="notes"` opens the Workspace Drawer on a tab.
