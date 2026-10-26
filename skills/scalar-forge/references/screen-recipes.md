@@ -16,7 +16,7 @@ The core Scalar screen: an income statement, a cap table summary, a waterfall.
 
 **Chrome:** company page (Tier 1 → Company info + Secondary Menu → Tertiary Menu with view tabs and tools)
 **Body:** `DataGrid` with `ColumnHeader`s in `head`, then `Row` → `RowHeader` + `Cell`s
-**Furniture:** `Footnote`, `ModalStatus`, `ValuationStatus`, `Ledger` — pagination is built into the grid (R15)
+**Furniture:** `Footnote`, `ModalStatus`, `ValuationStatus`, `Ledger` — never `Pagination` (R15)
 **Stories:** *Data/Table/DataGrid*, *Cell*, *RowHeader*, *ColumnHeader*, *Data/GridPatterns*
 
 ```tsx
@@ -43,9 +43,8 @@ The core Scalar screen: an income statement, a cap table summary, a waterfall.
   valuation product.
 - Every money column takes `numeric`. It right-aligns and applies tabular
   figures; without it, digits jitter between rows.
-- **The grid paginates itself and the bar is always shown (R15).** Pass every
-  row; don't slice, don't add a `Pagination`, don't hide the bar. Rows from a
-  server or `db` page: `pagination={{ totalRows, page, onPageChange }}`.
+- **No pagination (R15).** Render every row in one grid; never slice rows into
+  pages or add a `Pagination`. A long grid takes `maxHeight`.
 - `DataGrid` sizes columns from the header cells. Put widths on the
   **header only** (`grow` or a `size.*` `width`), never in per-cell width styles.
 - Pick one cell model per grid: `Cell`, or the grid-pattern cells
@@ -106,8 +105,7 @@ A single valuation, company or document.
 **Traps**
 
 - Peer views of one thing go in the Tertiary Menu or `Tabs`. Steps in a process
-  use `Stepper`; a table's rows page through the table's own bar (R15);
-  `Pagination` is only for paged content that is not a table.
+  use `Stepper`; a table is never paginated (R15) — it shows every row.
 - The last `Breadcrumb` item is where the user already is, so it's not a link.
 - Never hide anything required to finish the task inside a collapsed
   `AccordionItem`.
@@ -140,9 +138,9 @@ forms; `Checkbox`, `Radio`, `Switch`, `DatePicker`, `SettingRow`
 ## `list-search`: find something among many
 
 **Body:** `SearchBar` or `ModalSearch`, `FilterDropdown` / `FilterBar`, `Chip` for
-active filters, `DataGrid` (its built-in pagination bar, R15 — reset `page` to 1 when filters change) or a row list (`FileRow`)
+active filters, `DataGrid` (every matching row, no pagination — R15; `maxHeight` for a long list) or a row list (`FileRow`)
 **Global:** `GlobalSearch` for the cross-entity command palette
-**Stories:** *Navigation/GlobalSearch*, *Header/Controls*, *Navigation/Tabs* (Pagination), *Files/Files*
+**Stories:** *Navigation/GlobalSearch*, *Header/Controls*, *Navigation/Tabs*, *Files/Files*
 
 **Traps**
 

@@ -36,7 +36,7 @@ pasted that uses different styling (the DS wins — AI-GUIDE overrides screensho
 - Dark mode on a page (R14), a hand-assembled nav bar, a fourth nav tier, or extra padding/scroll wrappers in the `PageTemplate` body.
 - A fork or product-specific re-skin of `Table`.
 - Text below 12px (R10). PRISM colours for anything but entity type (R11).
-- An HTML `<table>` (use `DataGrid` / `Table`), a `Pagination` under a table or a table with its pagination bar hidden (the table pages itself, R15), a `Link` in a row's first cell (use `RowHeader href`), a `Button` that navigates (use `Link`), `window.confirm` (use `ConfirmationDialog`).
+- An HTML `<table>` (use `DataGrid` / `Table`), a `Pagination` under a table or rows split into pages (tables show every row, R15), a `Link` in a row's first cell (use `RowHeader href`), a `Button` that navigates (use `Link`), `window.confirm` (use `ConfirmationDialog`).
 - A hard-coded company/user list — use `db`, `fixtures.ts`.
 - Silently "fixing" something in `docs/known-gaps.md` — those are deliberate.
 

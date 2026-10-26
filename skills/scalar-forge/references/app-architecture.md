@@ -101,18 +101,13 @@ use the pattern: `route: companyPattern(routes.company.capTable)` →
   one? Add its name to `src/components/icon/material-icons.json`, run
   `npm run gen:icons` then `npm run build`. Don't use `glyphs.*` in screens.
 - Companies come from `db` — never hard-code a company list. Pickers use
-  `db.companies.search`.
-- **Every table paginates (R15) — built in, never optional.** `DataGrid` and
-  `Table` render their own pagination bar (25 a page, Rows per page
-  10 · 25 · 50 · 100) under every table, even when it has one page. Client data:
-  pass every row; the grid slices it (trailing `Row type="total"` rows stay
-  under every page; `Table` keeps a group with its children and total).
-  Server / `db` paging: `pagination={{ totalRows: total, page, onPageChange:
-  setPage, rowsPerPage, onRowsPerPageChange: setRowsPerPage }}` and only that
-  page's rows. Never place `Pagination` under a table and never hide the bar;
-  `npm run lint:tables` fails on either. A wrapper around `DataGrid` (like
-  `PortfolioGrid`) forwards `pagination`. `ShowMoreRow` reveals more *sections*
-  (e.g. more companies' grids), never more rows of one table. Re-seed with `npm run product:seed` (deterministic).
+  `db.companies.search`. Re-seed with `npm run product:seed` (deterministic).
+- **No table shows pagination (R15).** `DataGrid` and `Table` render every row:
+  never place a `Pagination` under a table, never slice its rows into pages,
+  never keep page / rows-per-page state. A long grid stays one grid — pass
+  `maxHeight` so the body scrolls under a sticky header. `npm run lint:tables`
+  fails on any `Pagination` in product code. `ShowMoreRow` reveals more
+  *sections* (e.g. more companies' grids), never pages of one table.
 - **One table.** A spreadsheet-like grid (selection, column resize, formula view,
   editing) is `Table` — configured by `columns` / `rows` / `cells`, never forked or
   re-skinned per product (see the *Prism Table spec* in Storybook). A read-only

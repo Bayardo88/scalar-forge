@@ -21,7 +21,7 @@ documents *how the product behaves*. Reuse both. Before writing JSX, produce thi
 
 | Archetype | Copy structure from | Logic to inherit |
 |---|---|---|
-| Firm portfolio grid | `p03-valuations`, `p04-waterfalls` | `DataGrid` + `Row` with its built-in pagination (25, rows-per-page; server paging via `pagination={{ totalRows, page, onPageChange }}`, R15); company picker via `db.companies.search`; date/currency selectors in header |
+| Firm portfolio grid | `p03-valuations`, `p04-waterfalls` | `DataGrid` + `Row`, every company in one grid, no pagination (R15; `maxHeight` to bound it); company picker via `db.companies.search`; date/currency selectors in header |
 | Company financial/statement grid | `p06-company-summary-financials` | `RowLabelCell` hierarchy + `GridValueCell`; totals `Row type="total"`; `numeric` on numbers; version picker via `Selector`+`SelectMenu` |
 | Editable model grid (cap table style) | `p07-company-cap-table` | inputs blue / calcs green, live recompute from `useState`, FAB adds a column, one-blank-at-a-time rule |
 | Spreadsheet (selection, resize, formula view) | Storybook *Data/Table/Table* + *Prism Table spec* | `Table` with `columns`/`rows`/`cells`; `cell.kind` sets text colour only; widths persist per `tableId` |
