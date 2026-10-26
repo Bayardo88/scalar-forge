@@ -45,11 +45,11 @@ in light mode.
 | Core/PageTemplate | `PageTemplate`, `BodySlot`: empty, with chrome, with drawer, placeholder | `template/` |
 | Core/Button · ButtonIcon · AIButton · Avatar · Chip · Card | actions, `Avatar`, `Chip`, `Card` + `CardItem` | `button/`, `avatar/`, `chip/`, `card/` |
 | Header/Chrome · Header/Menus · Header/Controls · Header/ValuationInfo | `PrimaryMenu`, `CompanyInfo`, `SecondaryMenu`, `TertiaryMenu`, `MenuPanel`, `Selector`, `ToolSwitch`, `AITool`, `InformationLabel`, `ValuationInfo` | `header/` |
-| Navigation/Tabs · Navigation/GlobalSearch | `Tabs`, `Breadcrumb`, `Pagination`, `Stepper`, `GlobalSearch` + result rows | `navigation/`, `search/` |
+| Navigation/Tabs · Navigation/GlobalSearch | `Tabs`, `Breadcrumb`, `Pagination` (not for tables, R15), `Stepper`, `GlobalSearch` + result rows | `navigation/`, `search/` |
 | Forms/Input · Checkbox · Controls · Patterns | `FormField`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `DatePicker`, `FloatingLabel*`, `NumberField`, `TagInput`, `ComboboxPanel`, `SelectMenu`, `Dropzone`, `ImageCropField`… | `input/`, `checkbox/`, `form-controls/`, `form-patterns/` |
 | Menus/Actions · Menus/ContextMenu | `SplitButton`, `Fab`, `SpeedDial`, `SegmentedControl` (`variant="outline"`, `count`, `fullWidth`), `ViewTabBar`, `ContextMenu`, `MenuItem` | `actions-menus/` |
 | Data/Table/Table + *Prism Table spec* (MDX) | `Table`, the one spreadsheet-like platform table: selection, resize, formula mode, editing | `table/Table.stories.tsx`, `docs/storybook/prism-table.mdx` |
-| Data/Table/DataGrid · Cell · ColumnHeader · RowHeader · Footnote · Status | `DataGrid`, `Row`, `RowHeader`, `Cell`, `ColumnHeader`, `Footnote`, `ModalStatus`, `ValuationStatus` | `table/` |
+| Data/Table/DataGrid (incl. *Paginated*, *Server Paging*) · Cell · ColumnHeader · RowHeader · Footnote · Status | `DataGrid` (built-in pagination, R15), `Row`, `RowHeader`, `Cell`, `ColumnHeader`, `Footnote`, `ModalStatus`, `ValuationStatus` | `table/` |
 | Data/GridPatterns | `RowLabelCell`, `GridValueCell`, `InCellControl`, `ColumnGroupHeader`, `GridColumnHeader`, `AddColumnHeader`, `TaskPill`, `CellHistoryPopover`… | `grid-patterns/` |
 | Charts/* | `BarChart`, `LineChart`, `DonutChart`, `WaterfallChart`, `ChartCanvas`, `ChartLegend` | `charts/` |
 | Feedback/Alert · Feedback/Banner | `Alert`, `Toast` (incl. *Toast (dismissible)*: × takes the toast ink), `ProgressBar`, `Skeleton`, `Banner`, `Spinner`, `ProgressRing`, `DataFreshness`, `SaveState`, **`AiOutline`** (the AI working outline, with a browser motion check) | `feedback/`, `feedback-patterns/` |

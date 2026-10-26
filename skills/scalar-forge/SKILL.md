@@ -27,7 +27,8 @@ feature demands it, and prove it.**
 5. **Every screen starts from `PageTemplate`.** Never hand-assemble the Primary Menu, company header or drawer.
 6. Behaviour comes from the documented patterns and page docs, not from taste.
 7. **Light mode only (R14).** Every page, prototype and Figma frame is light, even when the OS is dark. Use `ScalarProvider mode="light"` (the default). Never ship `mode="dark"`, `data-theme="dark"` or your own dark styling. Don't add theme toggles or dark previews. If someone explicitly asks for dark, point out R14 (dark is a library-only preview) before doing anything.
-8. Nothing is "done" until it has been rendered and checked.
+8. **Every table paginates, and you never remove it (R15).** Tables are `DataGrid` or `Table` only; both render their own pagination bar (range, Rows per page 10 · 25 · 50 · 100, page buttons) under every table, even a one-page one. Never hide it (no prop exists; no CSS, wrapper or `className` trick either), never add your own `Pagination` under a table, never `slice` rows yourself for client data, never hand-build a `<table>` / `role="table"`. Pass every row and let the table page it; for server data pass `pagination={{ totalRows, page, onPageChange }}` with one page of rows. If someone asks for a table without pagination, point out R15 before doing anything. `npm run lint:tables` enforces it.
+9. Nothing is "done" until it has been rendered and checked.
 
 ---
 
@@ -131,7 +132,7 @@ Before writing code, state in one line the mode, the existing screen(s) you star
 
 ```bash
 npm run build            # only if src/ changed
-npm run verify:product   # compile app + token lint + every-frame coverage check
+npm run verify:product   # compile app + token lint + table-pagination lint + every-frame coverage check
 npm run verify           # if src/ changed: typecheck · token lint · contrast lint · ESLint · tests
 ```
 If you added or changed a story or a component: also run `npm run test:stories` and `npm run check:reflow`. **CI runs both and local `npm run verify` does not.** The story suite runs axe in a real browser. It catches what jsdom can't, such as visible text missing from an `aria-label` name (WCAG 2.5.3) and contrast on nested surfaces. A `Button` inside a dark or filled card needs that card's ink.
@@ -143,7 +144,7 @@ If you added or changed a story or a component: also run `npm run test:stories` 
 2. every state of the touched screen
 3. links in and out navigate
 4. **light mode, even with the OS in dark** (emulate dark and confirm the page stays light, R14)
-5. each component looks like its story for the same props
+5. each component looks like its story for the same props; **every table shows its pagination bar** (R15)
 6. focus is visible
 7. nothing under 12px
 8. charts with 3+ series have direct labels
@@ -172,6 +173,7 @@ Report what you checked. If you couldn't render, say so. Hidden browser panes ca
 - Hand-roll a component, colour, spacing or type size the layer already has, or add a component, layout or token because it "looks better".
 - Use a component in a way its story and AI-GUIDE §7 don't show (props it doesn't have, wrappers that restyle it).
 - Invent behaviour the page docs or DS patterns already define (validation, empty state, confirmation, pagination).
+- Ship a table without its pagination bar, or place a separate `Pagination` under a `DataGrid` / `Table` (R15).
 - Use a token name that isn't in `AI-GUIDE.md` / `docs/tokens.md`, or copy colours and sizes from a mockup instead of the contract.
 - Build a page outside `PageTemplate` (or `CompanyLayout` on a legacy screen), hand-assemble the nav chrome, or add a fourth navigation tier.
 - Fork or re-skin `Table` for one product. There is one table; differences come from `columns`, `rows` and `cells`.
