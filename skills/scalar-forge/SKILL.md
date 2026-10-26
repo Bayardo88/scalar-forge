@@ -10,7 +10,7 @@ prototype of the **real Scalar product**. It builds only from what already exist
 **on the latest design system, which is Prism-v1 `main`**:
 
 - **Tokens and components:** `@scalar/design-system` (Prism-v1 `src/`): 491 tokens (including the Workflow, Deal and Gradient/AI families) and the 168 Figma components, plus the code-layer and Workboard families (the Valuation modal among them) and `AiOutline`, the "AI is working" animation.
-- **Usage:** the Storybook built from `main`, https://scalar-prism-storybook.netlify.app (50 groups, 442 stories, plus MDX spec pages such as *Prism Table spec*, *Valuation Modal spec* and *AiOutline spec*). See [references/storybook.md](references/storybook.md).
+- **Usage:** the Storybook built from `main`, https://scalar-ds-storybook.netlify.app (50 groups, 442 stories, plus MDX spec pages such as *Prism Table spec*, *Valuation Modal spec* and *AiOutline spec*). See [references/storybook.md](references/storybook.md).
 - **Screen base:** `PageTemplate` (`docs/page-template.md`) and the 3-tier navigation spec (`docs/navigation-3-tier-system.md`).
 - **Platform chrome and coded screens:** Prism-v1 `apps/product/`, which has 37 screens covering all 103 frames of Figma file `cZktZhD0ssL5lRVOvSqmOV`, plus prototypes.
 - **Logic and documentation:** `AI-GUIDE.md`, `docs/`, `docs/product/pages/*.md`.

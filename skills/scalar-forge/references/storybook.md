@@ -1,8 +1,9 @@
 # Storybook — how every component is meant to be used
 
-**Live:** https://scalar-prism-storybook.netlify.app. It's built by Netlify from
-Prism-v1 `main` (`netlify.toml` → `npm run build:storybook`), so it always shows
-the latest coded design system. Every pull request gets its own deploy preview.
+**Live:** https://scalar-ds-storybook.netlify.app. It's deployed from
+Prism-v1 `main` (`npm run build:storybook`, then a Netlify deploy). The site is
+not git-linked, so it can lag `main`; when in doubt, read the local
+`*.stories.tsx` (the reuse check falls back to them).
 
 A story is a **working, accessibility-tested usage** of a component, with
 realistic props and the state wiring the component expects. Before you use a
@@ -17,7 +18,7 @@ seems to break AI-GUIDE, AI-GUIDE wins, so note the conflict in your reply.
 ## Finding a story
 
 1. `node <skill-dir>/scripts/reuse-check.mjs <keywords>` lists matching stories, their docs URLs and source files. It reads the live `index.json` and falls back to the local `*.stories.tsx` when offline.
-2. The whole index is at `https://scalar-prism-storybook.netlify.app/index.json`, one entry per story with `id`, `title`, `name` and `importPath`. `curl -s …/index.json | jq '.entries[] | select(.type=="story") | .id'`.
+2. The whole index is at `https://scalar-ds-storybook.netlify.app/index.json`, one entry per story with `id`, `title`, `name` and `importPath`. `curl -s …/index.json | jq '.entries[] | select(.type=="story") | .id'`.
 3. The source is `src/components/<family>/<Name>.stories.tsx` (the `importPath`). Read it in the Prism-v1 checkout you build against (Step 0 makes sure that is `main`).
 
 ## URL patterns

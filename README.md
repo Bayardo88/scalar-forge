@@ -3,7 +3,7 @@
 A Claude Code skill for building **real prototypes of the Scalar product** from the
 [Prism-v1](https://github.com/Bayardo88/Prism-v1) design system and product app. It
 always builds on Prism-v1 `main` and uses the components the way their
-[Storybook](https://scalar-prism-storybook.netlify.app) stories do: tokens and coded
+[Storybook](https://scalar-ds-storybook.netlify.app) stories do: tokens and coded
 components only, no hard-coded values, and no invented components or layouts unless
 the feature itself requires one.
 

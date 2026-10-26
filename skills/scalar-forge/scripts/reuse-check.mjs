@@ -9,7 +9,7 @@ import { join, dirname, relative } from 'node:path';
 import { homedir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 
-const STORYBOOK = 'https://scalar-prism-storybook.netlify.app';
+const STORYBOOK = 'https://scalar-ds-storybook.netlify.app';
 
 const isRepo = (d) => d && existsSync(join(d, 'AI-GUIDE.md')) && existsSync(join(d, 'apps/product'));
 const up = (d) => { while (d !== '/' && !isRepo(d)) d = dirname(d); return isRepo(d) ? d : null; };
