@@ -104,6 +104,8 @@ use the pattern: `route: companyPattern(routes.company.capTable)` →
   `db.companies.search`. Re-seed with `npm run product:seed` (deterministic).
 - **Every table head is `ColumnHeader` (R16).** No `GridColumnHeader` / `AddColumnHeader` in screens; the
   trailing add-column header is `shell/AddColumn.tsx`. `npm run lint:tables` fails on them.
+  Financials periods carry their kind as the header `label` tag (`FinancialGrid` `tag`), with no group row;
+  a pinned first header (`PortfolioGrid`) takes only the sticky position, never a background.
 - **No table shows pagination (R15).** `DataGrid` and `Table` render every row:
   never place a `Pagination` under a table, never slice its rows into pages,
   never keep page / rows-per-page state. A long grid stays one grid — pass
