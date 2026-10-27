@@ -28,8 +28,9 @@ feature demands it, and prove it.**
 6. Behaviour comes from the documented patterns and page docs, not from taste.
 7. **Light mode only (R14).** Every page, prototype and Figma frame is light, even when the OS is dark. Use `ScalarProvider mode="light"` (the default). Never ship `mode="dark"`, `data-theme="dark"` or your own dark styling. Don't add theme toggles or dark previews. If someone explicitly asks for dark, point out R14 (dark is a library-only preview) before doing anything.
 8. **No table shows pagination (R15).** Tables are `DataGrid` or `Table`, and they render every row. Never put a `Pagination` (or `PageItem`) under or beside a table, never `slice` a table's rows into pages, never add page or rows-per-page state to a screen. A long grid stays one grid: bound a `DataGrid` with `maxHeight` (body scrolls, header sticks) or collapse `Table` groups. If someone asks for a paginated table, point out R15 before doing anything. `npm run lint:tables` enforces it.
-9. **Product logic (AI-GUIDE §11, P1–P10).** Every company value is bound to its valuation context. Read it from `useValuationContext(company)`, never from local state or a hard-coded date or version. The market date is not the measurement date. Versions are scenarios, not overwrites: a Cap Table version selects its paired Fund Ownership. Empty is not zero: use `displayValue()` / `ABSENCE_LABEL`, never a placeholder `$0`. No valuation maths in UI: prototype numbers come only from `domain/illustrative-calcs.ts`. Validate, never correct: weights total 100%, breakpoints ascend, transaction date ≤ measurement. Draft is not published. Editors use `useEditor` (save state plus the unsaved-changes guard). Anything the contract marks `VERIFY` stays presentational. `npm run test:product` and `npm run lint:product-logic` enforce parts of this.
-10. Nothing is "done" until it has been rendered and checked.
+9. **Every table uses the one column header, `ColumnHeader` (R16).** The head of every `DataGrid` / `Table` is `ColumnHeader`, as in the Storybook *Data › Table › ColumnHeader* stories (navy `brand` by default; `tone="subtle"` for a table inside a card or modal). Never use `GridColumnHeader` or `AddColumnHeader` in a screen, even when the Figma frame draws the Grid Column Header (known gap 16). Sort is `sort` + `onSortChange`, a filter or help button goes in `actions` (icons `tone="onBrand"` on the navy band), an editable-date column is `input` + `icon`, and the trailing add-column header is the product's `AddColumn` (`apps/product/src/shell/AddColumn.tsx`). Grid-pattern cells (`RowLabelCell`, `GridValueCell`, `ColumnGroupHeader`) stay. `npm run lint:tables` enforces it.
+10. **Product logic (AI-GUIDE §11, P1–P10).** Every company value is bound to its valuation context. Read it from `useValuationContext(company)`, never from local state or a hard-coded date or version. The market date is not the measurement date. Versions are scenarios, not overwrites: a Cap Table version selects its paired Fund Ownership. Empty is not zero: use `displayValue()` / `ABSENCE_LABEL`, never a placeholder `$0`. No valuation maths in UI: prototype numbers come only from `domain/illustrative-calcs.ts`. Validate, never correct: weights total 100%, breakpoints ascend, transaction date ≤ measurement. Draft is not published. Editors use `useEditor` (save state plus the unsaved-changes guard). Anything the contract marks `VERIFY` stays presentational. `npm run test:product` and `npm run lint:product-logic` enforce parts of this.
+11. Nothing is "done" until it has been rendered and checked.
 
 ---
 
@@ -41,7 +42,7 @@ feature demands it, and prove it.**
    - On another branch, or with local changes: **don't touch their checkout.** Work in a worktree: `git worktree add -b <topic> ../Prism-v1-<topic> origin/main` (then `npm install` there).
    - Say which commit you are building on (`git log -1 --oneline origin/main`).
    - Build against a feature branch only when the user asks. Then use its Netlify deploy preview or `npm run storybook` instead of the live Storybook.
-3. Read **`AI-GUIDE.md`** in full: rules R1–R15, the intent→component railroad (§5), the API (§7) and the product-logic rules P1–P10 (§11). It overrides any screenshot, story or existing screen.
+3. Read **`AI-GUIDE.md`** in full: rules R1–R16, the intent→component railroad (§5), the API (§7) and the product-logic rules P1–P10 (§11). It overrides any screenshot, story or existing screen.
    For any product screen, also read **`docs/product/domain-logic.md`**: the valuation context, the three time axes, versions and pairing, the state vocabulary, empty vs zero, validation, workflow status and the open questions you must not implement. Its source is `docs/product/training-notes-2025/` (dated evidence; the Figma frames outrank it).
 4. Read **`docs/page-template.md`** (§6 is the agent rules) and **`docs/navigation-3-tier-system.md`** §1 and §7–8 (tier scope and the per-screen configuration matrix).
 5. Read [references/storybook.md](references/storybook.md), [references/app-architecture.md](references/app-architecture.md), [references/reuse-ladder.md](references/reuse-ladder.md) and [references/screen-logic.md](references/screen-logic.md). For anything that notifies the user (bell, panel, toast) or shows **AI working** or other motion, also read [references/notifications-and-ai-motion.md](references/notifications-and-ai-motion.md).
@@ -146,7 +147,7 @@ If you added or changed a story or a component: also run `npm run test:stories` 
 2. every state of the touched screen
 3. links in and out navigate
 4. **light mode, even with the OS in dark** (emulate dark and confirm the page stays light, R14)
-5. each component looks like its story for the same props; **no table shows pagination** (R15)
+5. each component looks like its story for the same props; **no table shows pagination** (R15); **every table head is `ColumnHeader`** (R16)
 6. focus is visible
 7. nothing under 12px
 8. charts with 3+ series have direct labels
@@ -178,6 +179,7 @@ Report what you checked. If you couldn't render, say so. Hidden browser panes ca
 - Write a valuation formula (Waterfall, OPM, DCF, note conversion, IRR, multiples) into a screen or a DS component, or treat a `VERIFY` item in `domain-logic.md` as decided. Ask for the finance sign-off instead.
 - Show a value that doesn't exist yet as `$0`, or treat a draft valuation as published.
 - Paginate a table: no `Pagination` under a `DataGrid` / `Table`, no rows split into pages (R15).
+- Head a table with anything but `ColumnHeader`: no `GridColumnHeader` / `AddColumnHeader` in a screen, even to match a Figma frame (R16). Use `AddColumn` for the trailing add-column header.
 - Use a token name that isn't in `AI-GUIDE.md` / `docs/tokens.md`, or copy colours and sizes from a mockup instead of the contract.
 - Build a page outside `PageTemplate` (or `CompanyLayout` on a legacy screen), hand-assemble the nav chrome, or add a fourth navigation tier.
 - Fork or re-skin `Table` for one product. There is one table; differences come from `columns`, `rows` and `cells`.

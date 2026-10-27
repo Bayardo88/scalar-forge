@@ -102,6 +102,8 @@ use the pattern: `route: companyPattern(routes.company.capTable)` →
   `npm run gen:icons` then `npm run build`. Don't use `glyphs.*` in screens.
 - Companies come from `db` — never hard-code a company list. Pickers use
   `db.companies.search`. Re-seed with `npm run product:seed` (deterministic).
+- **Every table head is `ColumnHeader` (R16).** No `GridColumnHeader` / `AddColumnHeader` in screens; the
+  trailing add-column header is `shell/AddColumn.tsx`. `npm run lint:tables` fails on them.
 - **No table shows pagination (R15).** `DataGrid` and `Table` render every row:
   never place a `Pagination` under a table, never slice its rows into pages,
   never keep page / rows-per-page state. A long grid stays one grid — pass
