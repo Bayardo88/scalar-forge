@@ -24,7 +24,7 @@ feature demands it, and prove it.**
 2. No raw hex/rgb, no raw px in spacing or sizing, no hand-set font sizes, no `--primitive-*` tokens (R1), and nothing under 12px (R10; `heading.xs` is allowed only for data-grid chrome). `npm run lint:tokens` enforces this.
 3. No new component, token, layout pattern or chrome unless it passes the **reuse ladder**, and even then you ask first.
 4. **Use components the way their stories do.** Take props and composition from the story source and AI-GUIDE §7, not from taste or an old screen.
-5. **Every screen starts from `PageTemplate`.** Never hand-assemble the Primary Menu, company header or drawer.
+5. **Every screen starts from `PageTemplate`.** Never hand-assemble the Primary Menu, company header or drawer. **The three navigation tiers are sticky:** the frame is one viewport tall, the document never scrolls, and tables and content scroll *under* Tier 1–3 while the drawer stays docked. The shell owns this (`AppFrame` + `scrollBody` on the body `<main>`; `PageBody` / `CompanyLayout` already use it). Never add `position: sticky` to a bar or wrap the page in your own scroll container; a hand-written body `<main>` spreads `scrollBody`.
 6. Behaviour comes from the documented patterns and page docs, not from taste.
 7. **Light mode only (R14).** Every page, prototype and Figma frame is light, even when the OS is dark. Use `ScalarProvider mode="light"` (the default). Never ship `mode="dark"`, `data-theme="dark"` or your own dark styling. Don't add theme toggles or dark previews. If someone explicitly asks for dark, point out R14 (dark is a library-only preview) before doing anything.
 8. **No table shows pagination (R15).** Tables are `DataGrid` or `Table`, and they render every row. Never put a `Pagination` (or `PageItem`) under or beside a table, never `slice` a table's rows into pages, never add page or rows-per-page state to a screen. A long grid stays one grid: bound a `DataGrid` with `maxHeight` (body scrolls, header sticks) or collapse `Table` groups. If someone asks for a paginated table, point out R15 before doing anything. `npm run lint:tables` enforces it.
@@ -146,12 +146,13 @@ If you added or changed a story or a component: also run `npm run test:stories` 
 1. no console errors
 2. every state of the touched screen
 3. links in and out navigate
-4. **light mode, even with the OS in dark** (emulate dark and confirm the page stays light, R14)
-5. each component looks like its story for the same props; **no table shows pagination** (R15); **every table head is `ColumnHeader`** (R16)
-6. focus is visible
-7. nothing under 12px
-8. charts with 3+ series have direct labels
-9. at 1440px wide
+4. **scroll the body to the bottom: all three nav tiers stay at the top and the document itself doesn't scroll** (`document.scrollingElement.scrollHeight === innerHeight`)
+5. **light mode, even with the OS in dark** (emulate dark and confirm the page stays light, R14)
+6. each component looks like its story for the same props; **no table shows pagination** (R15); **every table head is `ColumnHeader`** (R16)
+7. focus is visible
+8. nothing under 12px
+9. charts with 3+ series have direct labels
+10. at 1440px wide
 
 Report what you checked. If you couldn't render, say so. Hidden browser panes can't take screenshots; use headless Chrome instead: `--headless=new --screenshot --window-size=1440,900`.
 
