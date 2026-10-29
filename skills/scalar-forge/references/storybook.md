@@ -38,7 +38,7 @@ Stories render inside `ScalarProvider mode="light"` (R14), with the a11y addon i
 `error` mode. A story that renders clean is the reference look for that component
 in light mode.
 
-## What's in it (50 groups, 442 stories, plus MDX spec pages)
+## What's in it (50 groups, 452 stories, plus MDX spec pages)
 
 | Group (title) | Components it shows | Source |
 |---|---|---|
@@ -48,7 +48,7 @@ in light mode.
 | Header/Chrome · Header/Menus · Header/Controls · Header/ValuationInfo | `PrimaryMenu`, `CompanyInfo`, `SecondaryMenu`, `TertiaryMenu`, `MenuPanel`, `Selector`, `ToolSwitch`, `AITool`, `InformationLabel`, `ValuationInfo` | `header/` |
 | Navigation/Tabs · Navigation/GlobalSearch | `Tabs`, `Breadcrumb`, `Pagination` (never on a table, R15), `Stepper`, `GlobalSearch` + result rows | `navigation/`, `search/` |
 | Forms/Input · Checkbox · Controls · Patterns | `FormField`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `DatePicker`, `FloatingLabel*`, `NumberField`, `TagInput`, `ComboboxPanel`, `SelectMenu`, `Dropzone`, `ImageCropField`… | `input/`, `checkbox/`, `form-controls/`, `form-patterns/` |
-| Menus/Actions · Menus/ContextMenu | `SplitButton`, `Fab`, `SpeedDial`, `SegmentedControl` (`variant="outline"`, `count`, `fullWidth`), `ViewTabBar`, `ContextMenu`, `MenuItem` | `actions-menus/` |
+| Menus/Actions · Menus/ContextMenu | `SplitButton` (Button's variant × tone × size), `Fab`, `SpeedDial`, `SegmentedControl` (`variant="outline"`, `count`, `fullWidth`), `ViewTabBar`, `ContextMenu`, `MenuItem` | `actions-menus/` |
 | Data/Table/Table + *Prism Table spec* (MDX) | `Table`, the one spreadsheet-like platform table: selection, resize, formula mode, editing | `table/Table.stories.tsx`, `docs/storybook/prism-table.mdx` |
 | Data/Table/DataGrid (incl. *Bounded Height* for long grids) · Cell · ColumnHeader · RowHeader · Footnote · Status | `DataGrid` (never paginated, R15), `Row`, `RowHeader`, `Cell`, `ColumnHeader` (the one table header, R16), `Footnote`, `ModalStatus`, `ValuationStatus` | `table/` |
 | Data/GridPatterns | `RowLabelCell`, `GridValueCell`, `InCellControl`, `ColumnGroupHeader`, `TaskPill`, `CellHistoryPopover`… (`GridColumnHeader` / `AddColumnHeader` are library-only: tables use `ColumnHeader`, R16) | `grid-patterns/` |
