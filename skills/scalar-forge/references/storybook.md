@@ -38,14 +38,14 @@ Stories render inside `ScalarProvider mode="light"` (R14), with the a11y addon i
 `error` mode. A story that renders clean is the reference look for that component
 in light mode.
 
-## What's in it (50 groups, 453 stories, plus MDX spec pages)
+## What's in it (50 groups, 454 stories, plus MDX spec pages)
 
 | Group (title) | Components it shows | Source |
 |---|---|---|
 | Core/Primitives · Core/Typography · Core/Icon | `Divider`, `Link`, `Tooltip`, `Scrim`, `EmptyState`, `Typography` + shorthands, `Icon` + `icons.*` | `core/`, `typography/`, `icon/` |
 | Core/PageTemplate | `PageTemplate`, `BodySlot`: empty, with chrome, with drawer, placeholder | `template/` |
 | Core/Button · ButtonIcon · AIButton · Avatar · Chip · Card | actions, `Avatar`, `Chip`, `Card` + `CardItem` | `button/`, `avatar/`, `chip/`, `card/` |
-| Header/Chrome · Header/Menus · Header/Controls · Header/ValuationInfo | `PrimaryMenu`, `CompanyInfo`, `SecondaryMenu`, `TertiaryMenu`, `MenuPanel`, `Selector`, `ToolSwitch`, `AITool`, `InformationLabel`, `ValuationInfo`, `CurrencySelector` (picker or Hundreds → Thousands → Millions cycle) | `header/` |
+| Header/Chrome · Header/Menus · Header/Controls · Header/ValuationInfo | `PrimaryMenu`, `CompanyInfo`, `SecondaryMenu`, `TertiaryMenu`, `MenuPanel`, `Selector`, `ToolSwitch`, `AITool`, `InformationLabel`, `ValuationInfo`, `CurrencySelector` (currency list + Hundreds → Thousands → Millions cycle) | `header/` |
 | Navigation/Tabs · Navigation/GlobalSearch | `Tabs`, `Breadcrumb`, `Pagination` (never on a table, R15), `Stepper`, `GlobalSearch` + result rows | `navigation/`, `search/` |
 | Forms/Input · Checkbox · Controls · Patterns | `FormField`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `DatePicker`, `FloatingLabel*`, `NumberField`, `TagInput`, `ComboboxPanel`, `SelectMenu`, `Dropzone`, `ImageCropField`… | `input/`, `checkbox/`, `form-controls/`, `form-patterns/` |
 | Menus/Actions · Menus/ContextMenu | `SplitButton` (Button's variant × tone × size), `Fab`, `SpeedDial`, `SegmentedControl` (`variant="outline"`, `count`, `fullWidth`), `ViewTabBar`, `ContextMenu`, `MenuItem` | `actions-menus/` |
