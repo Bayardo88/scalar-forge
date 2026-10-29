@@ -10,7 +10,7 @@ prototype of the **real Scalar product**. It builds only from what already exist
 **on the latest design system, which is Prism-v1 `main`**:
 
 - **Tokens and components:** `@scalar/design-system` (Prism-v1 `src/`): 491 tokens (including the Workflow, Deal and Gradient/AI families) and the 168 Figma components, plus the code-layer and Workboard families (the Valuation modal among them) and `AiOutline`, the "AI is working" animation.
-- **Usage:** the Storybook built from `main`, https://scalar-ds-storybook.netlify.app (50 groups, 454 stories, plus MDX spec pages such as *Prism Table spec*, *Valuation Modal spec* and *AiOutline spec*). See [references/storybook.md](references/storybook.md).
+- **Usage:** the Storybook built from `main`, https://scalar-ds-storybook.netlify.app (50 groups, 455 stories, plus MDX spec pages such as *Prism Table spec*, *Valuation Modal spec* and *AiOutline spec*). See [references/storybook.md](references/storybook.md).
 - **Screen base:** `PageTemplate` (`docs/page-template.md`) and the 3-tier navigation spec (`docs/navigation-3-tier-system.md`).
 - **Platform chrome and coded screens:** Prism-v1 `apps/product/`, which has 37 screens covering all 103 frames of Figma file `cZktZhD0ssL5lRVOvSqmOV`, plus prototypes.
 - **Logic and documentation:** `AI-GUIDE.md`, `docs/`, `docs/product/pages/*.md`, and the product-logic contract `docs/product/domain-logic.md` (AI-GUIDE §11).
@@ -135,6 +135,7 @@ Before writing code, state in one line the mode, the existing screen(s) you star
 - Use realistic finance copy, never lorem ipsum.
 - Chart.js configs take values from `useChartTokens`, never `var(--…)`.
 - A deal's card is `DealCard tone="deal"` (or `color.deal.*`). Never `bg.positive`, because a deal is not a status, and never white text on the Deal fill, which is 2.25:1.
+- **Ask AI is `AITool` (`ToolbarAi` in a toolbar), and it opens and closes itself.** A click on the purple trigger opens the prompt field (Figma `AI-Input-Field`, 466:3115: white field, "How can I help you?", "Press ↵" chip) and focuses it; Enter or the chip calls `onSubmit`. The AI mark inside the field, or Escape, closes it and keeps the typed prompt. Never wire your own toggle, popover or input around it; pass `state` / `onStateChange` only to control it. Story *Header › Controls › AI Tool Expand*.
 - **AI is working on an item** → `AiOutline` (2px `color.gradient.ai.*` outline that orbits every 6s while `active`), plus words or a `Spinner`. Never a hand-made gradient border, and never PRISM tokens for it (R11). See [references/notifications-and-ai-motion.md](references/notifications-and-ai-motion.md).
 - **Motion** uses `motion.*` durations and easings as transitions (which `base.css` reduced motion covers). A looping animation is a DS keyframe with its own `prefers-reduced-motion` stop, never screen code. Verify motion in the browser (computed styles over time or `el.getAnimations()`).
 - **Notifications:** the bell is `Notification` (dot only, no count) and the panel is `NotificationCenter`. The filters-above-the-list panel and the notification card are the *proposed* pattern from the Notifications Center prototype. Compose them as it does, and swap a global menu in a prototype with `GlobalMenuOverridesContext`, never by forking `AppFrame`.
