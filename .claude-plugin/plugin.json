@@ -1,6 +1,6 @@
 {
   "name": "scalar-forge",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Build real, clickable prototypes of the Scalar product from the Prism-v1 design system: tokens and coded components only, reuse-first, with Figma push.",
   "author": { "name": "Bayardo88", "url": "https://github.com/Bayardo88" },
   "homepage": "https://github.com/Bayardo88/scalar-forge",
